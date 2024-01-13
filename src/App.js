@@ -18,7 +18,12 @@ Square.propTypes = {
 // parent component: board
 export default function Board() {
   const [xIsNext, setXIsNext] = useState(true);
-  const [squares, setSquares] = useState(array(9).fill(null));
+  const [squares, setSquares] = useState(Array(9).fill(null));
+  const winner = calculateWinner(squares);
+  let status;
+  status = winner
+    ? "Winner is : " + winner
+    : "NextPlayer is : " + (xIsNext ? "X" : "O");
 
   handleClick = (index) => {
     const nextSquares = squares.slice();
@@ -30,8 +35,10 @@ export default function Board() {
     setXIsNext(!xIsNext);
     setSquares(nextSquares);
   };
+
   return (
     <>
+      <div className="status">{status}</div>
       <div className="board-row">
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
         <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
@@ -50,3 +57,38 @@ export default function Board() {
     </>
   );
 }
+
+calculateWinner = (squares) => {
+  let length = 3;
+  //check rows and cols
+  for (let i = 0; i < length; i++) {
+    if (
+      squares[i * length] &&
+      squares[i * length] === squares[i * length + 1] &&
+      squares[i * length] === squares[i * length + 2]
+    ) {
+      return squares[i * length];
+    }
+
+    if (
+      squares[i] &&
+      squares[i] === squares[i + length] &&
+      squares[i] === squares[i + 2 * length]
+    ) {
+      return squares[i];
+    }
+  }
+
+  //check diagonal
+  if (squares[0] && squares[0] === squares[4] && squares[0] === squares[8]) {
+    return squares[0];
+  } else if (
+    squares[2] &&
+    squares[2] === squares[4] &&
+    squares[2] === squares[6]
+  ) {
+    return squares[2];
+  }
+
+  return null;
+};
