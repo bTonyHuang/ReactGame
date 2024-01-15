@@ -1,6 +1,7 @@
 // Board.js by Tony
-import React, { useState } from "react";
+import React from "react";
 import Square from "./Square";
+import { calculateWinner } from "./utils.js";
 
 // middle level component: board
 function Board({ xIsNext, squares, onPlay }) {
@@ -12,7 +13,7 @@ function Board({ xIsNext, squares, onPlay }) {
     : "NextPlayer is : " + (xIsNext ? "X" : "O");
 
   // handleClick function
-  handleClick = (index) => {
+  function handleClick(index){
     const nextSquares = squares.slice();
     // check if the game is over or the square is not empty
     if (calculateWinner(nextSquares) || nextSquares[index]) {
@@ -43,40 +44,5 @@ function Board({ xIsNext, squares, onPlay }) {
     </>
   );
 }
-
-calculateWinner = (squares) => {
-  let length = 3;
-  //check rows and cols
-  for (let i = 0; i < length; i++) {
-    if (
-      squares[i * length] &&
-      squares[i * length] === squares[i * length + 1] &&
-      squares[i * length] === squares[i * length + 2]
-    ) {
-      return squares[i * length];
-    }
-
-    if (
-      squares[i] &&
-      squares[i] === squares[i + length] &&
-      squares[i] === squares[i + 2 * length]
-    ) {
-      return squares[i];
-    }
-  }
-
-  //check diagonal
-  if (squares[0] && squares[0] === squares[4] && squares[0] === squares[8]) {
-    return squares[0];
-  } else if (
-    squares[2] &&
-    squares[2] === squares[4] &&
-    squares[2] === squares[6]
-  ) {
-    return squares[2];
-  }
-
-  return null;
-};
 
 export default Board;

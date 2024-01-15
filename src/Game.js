@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Board from "./Board";
 
-const Game = () => {
+function Game() {
   // represent with 3x3 2D array
   // const initialSquares = Array.from({ length: 3 }, () => Array(3).fill(null));
   const initialSquares = Array(9).fill(null);

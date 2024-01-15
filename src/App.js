@@ -1,6 +1,5 @@
 //App.js by Tony
 import Game from "./Game";
-App = () => {
+export default function App() {
   return <Game />;
 };
-export default App;
