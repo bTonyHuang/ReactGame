@@ -1,6 +1,6 @@
 # ReactGame项目介绍
 ## 简介
-- 以官方文档的沙盒项目-井字棋游戏开始（tic-tac-toe），学习并应用React的各种基本概念和工具，并将其部署到本地运行和[云服务器](http://www.tonyhuang0908.com "www.tonyhuang0908.com")上。
+- 以官方文档的沙盒项目-井字棋游戏开始（tic-tac-toe），学习并应用React的各种基本概念和工具，并将其部署到本地运行和[云服务器](http://www.tonyhuang0908.com "www.tonyhuang0908.com")(域名备案中)上。
 
 ## 项目结构
 项目中采用了以下文件结构：
